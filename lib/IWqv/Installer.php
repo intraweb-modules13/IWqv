@@ -64,7 +64,6 @@ class IWqv_Installer extends Zikula_AbstractInstaller {
      * @return bool true if successful, false otherwise
      */
     public function upgrade($oldversion) {
-        $dom = ZLanguage::getModuleDomain('IWqv');
         // Checks if module IWmain is installed. If not returns error
         $modid = ModUtil::getIdFromName('IWmain');
         $modinfo = ModUtil::getInfo($modid);

@@ -1,27 +1,27 @@
 <?php
-function smarty_function_iwqvuserformselect($params, &$smarty)
-{	
-	if (!isset($params['width'])) {
-		$params['width'] = "100px";
-	}
 
-	if (!isset($params['class'])) {
-		$params['class'] = "pn-form-text";
-	}
+function smarty_function_iwqvuserformselect($params, &$smarty) {
+    if (!isset($params['width'])) {
+        $params['width'] = "100px";
+    }
 
-	$html = "<select id='".$params['selectname']."' name='".$params['selectname']."' style='width:".$params['width'].";' class='".$params['class']."'>";
+    if (!isset($params['class'])) {
+        $params['class'] = "pn-form-text";
+    }
 
-	foreach ($params['selectvalues'] as $value) {
-		$html .= "<option ";
-		if (isset($params['selectvalue']) && ($params['selectvalue']== $value['id'])) {
-			$html .= " selected ";
-		}
-		$html .= "value='".$value['id']."'>";
-		$html .= pnML($value['name']);
-		$html .= "</option>";
-	}
+    $html = "<select id='" . $params['selectname'] . "' name='" . $params['selectname'] . "' style='width:" . $params['width'] . ";' class='" . $params['class'] . "'>";
 
-	$html.= "</select>";
+    foreach ($params['selectvalues'] as $value) {
+        $html .= "<option ";
+        if (isset($params['selectvalue']) && ($params['selectvalue'] == $value['id'])) {
+            $html .= " selected ";
+        }
+        $html .= "value='" . $value['id'] . "'>";
+        $html .= $value['name'];
+        $html .= "</option>";
+    }
 
-	return $html;
+    $html.= "</select>";
+
+    return $html;
 }

@@ -18,7 +18,7 @@ class IWqv_Controller_Ajax extends Zikula_Controller_AbstractAjax {
         // Get the parameters
         $qvid = FormUtil::getPassedValue('qvid', null, 'POST');
         if (ModUtil::apiFunc('IWqv', 'user', 'deleteqv', array('qvid' => $qvid))) {
-            $output = DataUtil::formatForDisplayHTML(pnML($this->__f('Done! %1$s deleted.', $this->__('QV assignment'))));
+            $output = DataUtil::formatForDisplayHTML($this->__f('Done! %1$s deleted.', $this->__('QV assignment')));
         } else {
             $output = AjaxUtil::error(DataUtil::formatForDisplayHTML($this->__('Error! Sorry! Deletion attempt failed.')));
         }
@@ -43,7 +43,7 @@ class IWqv_Controller_Ajax extends Zikula_Controller_AbstractAjax {
         // Get the parameters
         $qvaid = FormUtil::getPassedValue('qvaid', null, 'POST');
         if (ModUtil::apiFunc('IWqv', 'user', 'deleteuserassignment', array('qvaid' => $qvaid))) {
-            $output = DataUtil::formatForDisplayHTML(pnML($this->__f('Done! %1$s deleted.', $this->__('QV assignment'))));
+            $output = DataUtil::formatForDisplayHTML($this->__f('Done! %1$s deleted.', $this->__('QV assignment')));
         } else {
             $output = AjaxUtil::error(DataUtil::formatForDisplayHTML($this->__('Error! Sorry! Deletion attempt failed.')));
         }

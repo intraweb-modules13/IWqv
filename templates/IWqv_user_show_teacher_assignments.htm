@@ -12,8 +12,10 @@
     <div id="iwqv_actionlinks">
         {iwqvuserassignmentactionmenulinks url=$qv.url skin=$qv.skin lang=qv.lang qvid=$qv.qvid viewas=$viewas hidecorrect=true}
     </div>
-    <p class="iwqv_meta">{gt text="Assigned for %s at %s" tag1=$qv.teachername tag2=$qv.briefcrdate}</p>			
-    {$qv.description}
+    <p class="iwqv_meta">
+        {gt text="Assigned for %s at %s" tag1=$qv.teachername tag2=$qv.briefcrdate}
+    </p>			
+    {$qv.description|nl2br}
     <br><br>
     <table class="z-datatable" style="width: 100%;">
         <thead>
@@ -48,11 +50,17 @@
                 <td id="score_{$assignments[assignment].qvaid}" class="iwqv-row center">{$assignments[assignment].score}</td>
                 <td id="delivers_{$assignments[assignment].qvaid}" class="iwqv-row center">{if $assignments[assignment].qvaid neq ''}{$assignments[assignment].delivers}{if $qv.maxdeliver>0}/{$qv.maxdeliver}{/if}{/if}</td>
                 <td id="totaltime_{$assignments[assignment].qvaid}" class="iwqv-row center">{$assignments[assignment].totaltime}</td>
-                <td id="teachercomments_{$assignments[assignment].userid}" class="iwqv-row">{$assignments[assignment].teachercomments}</td>
-                <td id="teacherobservations_{$assignments[assignment].userid}" class="iwqv-row">{$assignments[assignment].teacherobservations}</td>
+                <td id="teachercomments_{$assignments[assignment].userid}" class="iwqv-row">{$assignments[assignment].teachercomments|nl2br}</td>
+                <td id="teacherobservations_{$assignments[assignment].userid}" class="iwqv-row">{$assignments[assignment].teacherobservations|nl2br}</td>
                 <td class="iwqv-row">
-                    <a href="javascript:void(0);" onclick ="iwqvEditUserAssignment('{$assignments[assignment].userid}', '{$qv.qvid}');">{img modname='core' src='xedit.gif' set='icons/extrasmall'   __alt="Edit" __title="Edit"}</a>
-                    {if $assignments[assignment].qvaid neq ''}<a id="bt_deleteuserassignment_{$assignments[assignment].qvaid}" href="javascript:void(0);" onclick ="iwqvDeleteUserAssignment('{$assignments[assignment].qvaid}');">{img modname='core' src='14_layer_deletelayer.gif' set='icons/extrasmall'   __alt="Delete" __title="Delete"}</a>{/if}
+                    <a href="javascript:void(0);" onclick ="iwqvEditUserAssignment('{$assignments[assignment].userid}', '{$qv.qvid}');">
+                        {img modname='core' src='xedit.png' set='icons/extrasmall' __alt="Edit" __title="Edit"}
+                    </a>
+                    {if $assignments[assignment].qvaid neq ''}
+                    <a id="bt_deleteuserassignment_{$assignments[assignment].qvaid}" href="javascript:void(0);" onclick ="iwqvDeleteUserAssignment('{$assignments[assignment].qvaid}');">
+                        {img modname='core' src='14_layer_deletelayer.png' set='icons/extrasmall' __alt="Delete" __title="Delete"}
+                    </a>
+                    {/if}
                 </td>
             </tr>
             {/section}
@@ -61,6 +69,6 @@
     {if $qv.observations neq ''}
     <br><br>
     <strong>{gt text="Observations about the assessment:"}</strong><br>
-    {$qv.observations}
+    {$qv.observations|nl2br}
     {/if}		
 </div>

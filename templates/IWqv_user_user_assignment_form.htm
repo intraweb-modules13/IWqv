@@ -1,6 +1,6 @@
 {include file="IWqv_user_menu.htm"}
 <form method="post" name="userassignment_form" id="userassignment_form" class="z-form" >
-    <input type="hidden" name="authid" value="{$security}" />
+    <input type="hidden" name="csrftoken" value="{insert name='csrftoken'}" />
     <input type="hidden" name="qvid" value="{$qvid}" />
     <input type="hidden" name="userid" value="{$userid}" />
 
@@ -16,18 +16,18 @@
         </div>	
     </fieldset>
     <br>
-    <div align="center">
+    <div class="z-center">
         <span class="z-buttons">
             <a href="#" onClick="javascript:iwqvSenduserAssignmentForm();" >
                 {img modname='core' src='button_ok.png' set='icons/small'}
+                {gt text="Send"}
             </a>
-            {gt text="Send"}
         </span>
         <span class="z-buttons">
             <a href="#" onclick ='javascript:history.back(-1)'>
                 {img modname='core' src='button_cancel.png' set='icons/small' __alt="Cancel" __title="Cancel"}
+                {gt text="Cancel"}
             </a>
-            {gt text="Cancel"}
         </span>
     </div>
     <br>

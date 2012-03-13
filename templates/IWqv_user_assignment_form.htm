@@ -73,7 +73,7 @@
 {include file="IWqv_user_menu.htm"}
 <h2>{gt text="Edit the assignnment of the assessment"}</h2>
 <form method="post" name="assignment_form" id="assignment_form" class="z-form" >
-    <input type="hidden" name="authid" value="{$security}" />
+    <input type="hidden" name="csrftoken" value="{insert name='csrftoken'}" />
     <input type="hidden" name="qvid" value="{$qvid}" />
     <input type="hidden" name="m" value="{$m}" />
     <fieldset class="z-form-fieldset">
@@ -92,7 +92,9 @@
         <div class="z-formrow">
             <label for="url">{gt text="Link of the assessment"}</label>
             <input type="text" class="z-form-text" id="url" name="url" size="60" maxlength="255" value="{$assignment.url}">
-            <div class="z-informationmsg">{gt text="You can get the adress from the <a href=\"http://clic.xtec.cat/qv_biblio/act_list.jsp?lang=en\" target=\"_blank\" title=\"Library of the assessments\" alt=\"Library of the assessments\">Library of Quaderns Virtuals</a> (for example, <i>http://clic.xtec.cat/qv_viewer/quaderns/biblioteca/clima_ca</i>) or from the <a href=\"http://clic.xtec.cat/qv_editor\" target=\"_blank\" title=\"Editor\" alt=\"Editor\">Editor of Quaderns Virtuals</a> (like <i>http://clic.edu365.cat/qv_viewer/quaderns/sarjona/planetes/</i>),  for example."}</div>
+            <div class="z-informationmsg">
+                {gt text="You can get the adress from the <a href=\"http://clic.xtec.cat/qv_biblio/act_list.jsp?lang=en\" target=\"_blank\" title=\"Library of the assessments\" alt=\"Library of the assessments\">Library of Quaderns Virtuals</a> (for example, <i>http://clic.xtec.cat/qv_viewer/quaderns/biblioteca/clima_ca</i>) or from the <a href=\"http://clic.xtec.cat/qv_editor\" target=\"_blank\" title=\"Editor\" alt=\"Editor\">Editor of Quaderns Virtuals</a> (like <i>http://clic.edu365.cat/qv_viewer/quaderns/sarjona/planetes/</i>),  for example."}
+            </div>
         </div>	
         <div class="z-formrow">
             <label for="skin">{gt text="Skin"}</label>
@@ -146,8 +148,10 @@
         </div>	
         <div class="z-formrow">
             <label for="width">{gt text="New group"}</label>
-            {iwqvuserformselect selectname="newgroup" selectvalues=$groups width="200px" class=""}
-            <a href="javascript:void(0);" onclick="iwqvAddGroupToAssignment();">{gt text="add"}</a>
+            <div class="z-formnote">
+                {iwqvuserformselect selectname="newgroup" selectvalues=$groups width="200px" class=""}
+                <a href="javascript:void(0);" onclick="iwqvAddGroupToAssignment();">{gt text="add"}</a>
+            </div>
         </div>	
     </fieldset>
     <fieldset class="z-form-fieldset">
@@ -163,14 +167,18 @@
     </fieldset>
     <br>
     <div align="center">
-        <a href="javascript:void(0);" onClick="iwqvSendAssignmentForm();" title="{$actiontext}">
-            {img modname='core' src='button_ok.png' set='icons/small'}
-            {$actiontext}
-        </a>
-        <a href="javascript:void(0);" onclick ='history.go(-1);'>
-            {img modname='core' src='button_cancel.png' set='icons/small' __alt="Cancel" __title="Cancel"}
-            {gt text="Cancel"}
-        </a>	
+        <span class="z-buttons">
+            <a href="javascript:void(0);" onClick="iwqvSendAssignmentForm();" title="{$actiontext}">
+                {img modname='core' src='button_ok.png' set='icons/small'}
+                {$actiontext}
+            </a>
+        </span>
+        <span class="z-buttons">
+            <a href="javascript:void(0);" onclick ='history.go(-1);'>
+                {img modname='core' src='button_cancel.png' set='icons/small' __alt="Cancel" __title="Cancel"}
+                {gt text="Cancel"}
+            </a>
+        </span>
     </div>
     <br>
 </form>

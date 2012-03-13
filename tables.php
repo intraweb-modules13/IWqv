@@ -32,7 +32,7 @@ function IWqv_tables() {
         'teacher' => "INT(11) NOTNULL",
         'groups' => "C(255) NOTNULL",
         'title' => "C(255) NOTNULL DEFAULT ''",
-        'description' => "TEXT NOTNULL DEFAULT ''",
+        'description' => "X NOTNULL DEFAULT ''",
         'url' => "C(255) NOTNULL DEFAULT ''",
         'skin' => "C(20) NOTNULL DEFAULT ''",
         'lang' => "C(10) NOTNULL DEFAULT ''",
@@ -45,7 +45,7 @@ function IWqv_tables() {
         'width' => "C(10) NULL",
         'height' => "C(10) NULL",
         'active' => "INT(1) NOTNULL DEFAULT '1'",
-        'observations' => "TEXT NOTNULL");
+        'observations' => "X NOTNULL");
 
     ObjectUtil::addStandardFieldsToTableDefinition($tables['IWqv_column'], 'pn_');
     ObjectUtil::addStandardFieldsToTableDataDefinition($tables['IWqv_column_def'], 'iw_');
@@ -65,8 +65,8 @@ function IWqv_tables() {
         'userid' => "INT(11) NOTNULL",
         'sectionorder' => "INT(10) NOTNULL DEFAULT '0'",
         'itemorder' => "INT(10) NOTNULL DEFAULT '0'",
-        'teachercomments' => "TEXT NULL",
-        'teacherobservations' => "TEXT NULL");
+        'teachercomments' => "X NULL",
+        'teacherobservations' => "X NULL");
 
     ObjectUtil::addStandardFieldsToTableDefinition($tables['IWqv_assignments_column'], 'pn_');
     ObjectUtil::addStandardFieldsToTableDataDefinition($tables['IWqv_assignments_column_def'], 'iw_');
@@ -86,9 +86,9 @@ function IWqv_tables() {
     $tables['IWqv_sections_column_def'] = array('qvsid' => "I NOTNULL AUTO PRIMARY",
         'qvaid' => "INT(11) NOTNULL",
         'sectionid' => "C(255) NOTNULL",
-        'responses' => "TEXT NULL",
-        'scores' => "TEXT NULL",
-        'pendingscores' => "TEXT NULL",
+        'responses' => "X NULL",
+        'scores' => "X NULL",
+        'pendingscores' => "X NULL",
         'attempts' => "INT(60) NULL DEFAULT '0'",
         'state' => "INT(1) NULL DEFAULT '0'",
         'time' => "C(8) NULL DEFAULT '00:00:00'");
@@ -108,7 +108,7 @@ function IWqv_tables() {
         'qvsid' => "INT(11) NOTNULL",
         'itemid' => "C(255) NOTNULL",
         'userid' => "INT(11) NOTNULL",
-        'message' => "TEXT NOTNULL DEFAULT ''");
+        'message' => "X NOTNULL DEFAULT ''");
 
     ObjectUtil::addStandardFieldsToTableDefinition($tables['IWqv_messages_column'], 'pn_');
     ObjectUtil::addStandardFieldsToTableDataDefinition($tables['IWqv_messages_column_def'], 'iw_');

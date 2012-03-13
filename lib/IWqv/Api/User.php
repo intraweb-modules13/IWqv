@@ -4,7 +4,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Get an array with the all the skins
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	-
      * @return array   The array with each skin (id, name)
      */
@@ -12,11 +12,14 @@ class IWqv_Api_User extends Zikula_AbstractApi {
         $tmp = explode(",", ModUtil::getVar('IWqv', 'skins'));
         for ($i = 0; $i < count($tmp); $i++) {
             switch ($tmp[$i]) {
-                case "default": $items[$i] = array("id" => $tmp[$i], "name" => $this->__('@default'));
+                case "default": $items[$i] = array("id" => $tmp[$i],
+                        "name" => $this->__('@default'));
                     break;
-                case "formal": $items[$i] = array("id" => $tmp[$i], "name" => $this->__('@formal'));
+                case "formal": $items[$i] = array("id" => $tmp[$i],
+                        "name" => $this->__('@formal'));
                     break;
-                case "infantil": $items[$i] = array("id" => $tmp[$i], "name" => $this->__('@infantil'));
+                case "infantil": $items[$i] = array("id" => $tmp[$i],
+                        "name" => $this->__('@infantil'));
                     break;
             }
         }
@@ -25,7 +28,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Get an array with the all the languages
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	-
      * @return array   The array with each language (id, name)
      */
@@ -33,11 +36,14 @@ class IWqv_Api_User extends Zikula_AbstractApi {
         $tmp = explode(",", ModUtil::getVar('IWqv', 'langs'));
         for ($i = 0; $i < count($tmp); $i++) {
             switch ($tmp[$i]) {
-                case "ca": $items[$i] = array("id" => $tmp[$i], "name" => $this->__('Catalan'));
+                case "ca": $items[$i] = array("id" => $tmp[$i],
+                        "name" => $this->__('Catalan'));
                     break;
-                case "en": $items[$i] = array("id" => $tmp[$i], "name" => $this->__('English'));
+                case "en": $items[$i] = array("id" => $tmp[$i],
+                        "name" => $this->__('English'));
                     break;
-                case "es": $items[$i] = array("id" => $tmp[$i], "name" => $this->__('Spanish'));
+                case "es": $items[$i] = array("id" => $tmp[$i],
+                        "name" => $this->__('Spanish'));
                     break;
             }
         }
@@ -46,7 +52,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Get an array with the all the max deliver possibilities
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	-
      * @return array   The array with each maxdeliver possibility (id, name)
      */
@@ -56,14 +62,15 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             $name = $tmp[$i];
             if ($name == -1)
                 $name = $this->__('Unlimited');
-            $items[$i] = array("id" => $tmp[$i], "name" => $name);
+            $items[$i] = array("id" => $tmp[$i],
+                "name" => $name);
         }
         return $items;
     }
 
     /**
      * Get an array with the window target options
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	-
      * @return array   The array with window target options (id, name)
      */
@@ -75,7 +82,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Gets all the qvs to do or to correct (depending of the parameters) for the current user
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	If none of the following parameters is specified, it will be returned all the qvs
      * 			- teacher teacher of the qvs (to filter)
      * 			- student to filter only the qvs associated to this student
@@ -107,7 +114,8 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             $c = $pntables['IWqv_column'];
 
             $sv = ModUtil::func('IWmain', 'user', 'genSecurityValue');
-            $usergroups = ModUtil::func('IWmain', 'user', 'getAllUserGroups', array('sv' => $sv, 'uid' => $student));
+            $usergroups = ModUtil::func('IWmain', 'user', 'getAllUserGroups', array('sv' => $sv,
+                        'uid' => $student));
             foreach ($usergroups as $group) {
                 if ($where != '')
                     $where.=" OR ";
@@ -139,7 +147,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Gets the information of a qv activity
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	The id of the assignment
      * @return	An array with the qv activity information
      */
@@ -171,22 +179,24 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Gets complementary information of a qv activity
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	The qv ($item) to add more information
      * @return	An array with the qv activity information
      */
     public function completeqvinfo($args) {
         extract($args);
         $sv = ModUtil::func('IWmain', 'user', 'genSecurityValue');
-        $user = ModUtil::func('IWmain', 'user', 'getUserInfo', array('sv' => $sv, 'uid' => $item['teacher'], 'info' => 'ncc'));
+        $user = ModUtil::func('IWmain', 'user', 'getUserInfo', array('sv' => $sv,
+                    'uid' => $item['teacher'],
+                    'info' => 'ncc'));
         $item['teachername'] = $user;
-        $item['briefcrdate'] = DateUtil::formatDatetime($item['cr_date'], DATETIMEBRIEF);
+        $item['briefcrdate'] = DateUtil::formatDatetime($item['cr_date']);
         return $item;
     }
 
     /**
      * Gets the information of an user qv assignment
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param  args	
      * 			- qv (*)
      * 			- userid (*)
@@ -195,10 +205,15 @@ class IWqv_Api_User extends Zikula_AbstractApi {
      * @return	The assignment of the specified user for the specified qvid
      */
     public function getassignment($args) {
+        $totalscore = 0;
+        $states = 0;
+        $totaldelivers = 0;
+        $totaltime = 0;
+
         // Get the parameters
         extract($args);
         if (isset($qv))
-            $qvid = $qv[qvid];
+            $qvid = $qv['qvid'];
         if (!isset($viewas))
             $viewas = 'student';
         if (!isset($createifnotexist))
@@ -241,40 +256,45 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             }
 
             if (isset($item) && $getallinformation) {
+                $args['qv'] = (isset($args['qv'])) ? $args['qv'] : 0;
                 // Get or calculate some assignment values
-                $item[fullurl] = ModUtil::apiFunc('IWqv', 'user', 'getfullurl', array('qv' => $args['qv'], 'assignment' => $item, 'viewas' => $viewas));
+                $item['fullurl'] = ModUtil::apiFunc('IWqv', 'user', 'getfullurl', array('qv' => $args['qv'],
+                            'assignment' => $item,
+                            'viewas' => $viewas));
 
                 $pntable = DBUtil::getTables();
                 $c = $pntable['IWqv_sections_column'];
                 $where = " $c[qvaid]=$item[qvaid] ";
-                if ($sections = DBUtil::selectObjectArray('IWqv_sections', $where, $orderby)) {
+                $sections = DBUtil::selectObjectArray('IWqv_sections', $where, '');
+                if ($sections) {
                     $totaltime = "00:00:00";
                     $totaldelivers = 0;
                     $totalscore = 0;
                     $states = array();
                     foreach ($sections as $section) {
-                        $totaltime = ModUtil::apiFunc('IWqv', 'user', 'addtime', array('time1' => $totaltime, 'time2' => $section[time]));
-                        if ($section[attempts] > $totaldelivers)
-                            $totaldelivers = $section[attempts];
+                        $totaltime = ModUtil::apiFunc('IWqv', 'user', 'addtime', array('time1' => $totaltime,
+                                    'time2' => $section['time']));
+                        if ($section['attempts'] > $totaldelivers)
+                            $totaldelivers = $section['attempts'];
                         // score
-                        $start = strpos($section[scores], $section[sectionid] . '_score=');
+                        $start = strpos($section['scores'], $section['sectionid'] . '_score=');
                         if ($start >= 0) {
-                            $start+=strlen($section[sectionid] . '_score=');
-                            $length = strpos(substr($section[scores], $start + 1), '#') + 1;
-                            $totalscore+=substr($section[scores], $start, $length);
+                            $start += strlen($section['sectionid'] . '_score=');
+                            $length = strpos(substr($section['scores'], $start + 1), '#') + 1;
+                            $totalscore += substr($section['scores'], $start, $length);
                         }
                         // status
-                        $states[$section[state]]+=1;
+                        $states[$section['state']] += 1;
                     }
                 }
 
-                $item[score] = $totalscore;
-                $item[states] = $states;
-                $item[sections] = count($sections);
+                $item['score'] = $totalscore;
+                $item['states'] = $states;
+                $item['sections'] = count($sections);
                 // Section with the max number of delivers
-                $item[delivers] = $totaldelivers;
+                $item['delivers'] = $totaldelivers;
                 // The sum of the time of each section
-                $item[totaltime] = $totaltime;
+                $item['totaltime'] = $totaltime;
             }
         }
         // Return the item
@@ -283,7 +303,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Gets the list of users of an assignment
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param  args	The following parameters are mandatory:
      * 			- qvgroups 
      * @return	The list of users of an assignment
@@ -297,14 +317,16 @@ class IWqv_Api_User extends Zikula_AbstractApi {
         foreach ($groups as $group) {
             if ($group != '') {
                 $sv = ModUtil::func('IWmain', 'user', 'genSecurityValue');
-                $membersgroup = ModUtil::func('IWmain', 'user', 'getMembersGroup', array('sv' => $sv, 'gid' => $group));
+                $membersgroup = ModUtil::func('IWmain', 'user', 'getMembersGroup', array('sv' => $sv,
+                            'gid' => $group));
                 foreach ($membersgroup as $member) {
-                    if (!array_key_exists($member[id], $users)) {
-                        $users[$member[id]] = $member;
-                        $users[$member[id]][fullname] = $users[$member[id]][name];
+                    if (!array_key_exists($member['id'], $users)) {
+                        $users[$member['id']] = $member;
+                        $users[$member['id']]['fullname'] = $users[$member['id']]['name'];
                         $sv = ModUtil::func('IWmain', 'user', 'genSecurityValue');
-                        $users[$member[id]][name] = ModUtil::func('IWmain', 'user', 'getUserInfo', array('sv' => $sv, 'uid' => $member[id], 'info' => 'l'));
-                        ;
+                        $users[$member['id']]['name'] = ModUtil::func('IWmain', 'user', 'getUserInfo', array('sv' => $sv,
+                                    'uid' => $member['id'],
+                                    'info' => 'l'));
                     }
                 }
             }
@@ -323,7 +345,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Gets the information of an qv assignment as teacher
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param  args	The following parameters are mandatory:
      * 			- qvid 
      * 			- teacher
@@ -338,7 +360,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
         // Get the parameters
         $qv = FormUtil::getPassedValue('qv', isset($args['qv']) ? $args['qv'] : array(), 'POST');
-        $qvid = $qv[qvid];
+        $qvid = $qv['qvid'];
         $teacher = FormUtil::getPassedValue('teacher', isset($args['teacher']) ? $args['teacher'] : null, 'POST');
 
         // Needed argument
@@ -347,50 +369,32 @@ class IWqv_Api_User extends Zikula_AbstractApi {
         }
 
         $assignments = array();
-        $users = ModUtil::apiFunc('IWqv', 'user', 'getassignmentusers', array('qvgroups' => $qv[groups]));
+        $users = ModUtil::apiFunc('IWqv', 'user', 'getassignmentusers', array('qvgroups' => $qv['groups']));
         foreach ($users as $user) {
-            $assignment = ModUtil::apiFunc('IWqv', 'user', 'getassignment', array('qv' => $qv, 'userid' => $user[id], 'createifnotexist' => false));
+            $assignment = ModUtil::apiFunc('IWqv', 'user', 'getassignment', array('qv' => $qv,
+                        'userid' => $user['id'],
+                        'createifnotexist' => false));
             if (!isset($assignment)) {
-                $assignment[userid] = $user[id];
+                $assignment['userid'] = $user['id'];
+                $assignment['fullurl'] = '';
+                $assignment['qvaid'] = '';
+                $assignment['states'] = '';
+                $assignment['sections'] = '';
+                $assignment['score'] = '';
+                $assignment['totaltime'] = '';
+                $assignment['teachercomments'] = '';
+                $assignment['teacherobservations'] = '';
             }
-            $assignment[userfullname] = $user[fullname];
+            $assignment['userfullname'] = $user['fullname'];
             $assignments[] = $assignment;
         }
 
         return $assignments;
-
-        /* 		
-          $pntable = DBUtil::getTables();
-          $c = $pntable['IWqv_assignments_column'];
-          $where=" $c[qvid]=$qvid AND $c[userid]=$userid ";
-          $item = DBUtil::selectObject('IWqv_assignments', $where);
-
-          // Check for an error with the database code, and if so set an appropriate
-          // error message and return
-          if ($item === false) {
-          return LogUtil::registerError ($this->__('Error! Could not load items.'));
-          }else{
-          if (!isset($item) && $createifnotexist){
-          $item = array('qvid' => $qvid,
-          'userid' => $userid);
-          // Create the assignment
-          $qvaid = ModUtil::apiFunc('IWqv', 'user', 'createassignment', $item);
-          $item['qvaid']=$qvaid;
-          }
-
-          // Get or calculate some assignment values
-          $fullurl = ModUtil::apiFunc('IWqv', 'user', 'getfullurl', array('qv'=>$args['qv'], 'assignment'=>$item, 'viewas'=>$viewas));
-          $item['fullurl']=$fullurl;
-          }
-
-          // Return the item
-          return $item;
-         */
     }
 
     /**
      * Create a new user assignment into database
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the assignment information (userid, qvid)
      * @return	identity of the new record created or false if error
      */
@@ -436,7 +440,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Create or update a new user assignment
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the assignment information (userid, qvid)
      * @return	identity of the new record created/updated or false if error
      */
@@ -455,10 +459,14 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             return LogUtil::registerError($this->__('Error! Could not do what you wanted. Please check your input.'));
         }
 
-        if ($item = ModUtil::apiFunc('IWqv', 'user', 'getassignment', array('qv' => $qvid, 'userid' => $userid, 'getallinformation' => false))) {
+        $item = ModUtil::apiFunc('IWqv', 'user', 'getassignment', array('qv' => $qvid,
+                    'userid' => $userid,
+                    'getallinformation' => false));
+
+        if ($item) {
             // Update the assignment
-            $item[teachercomments] = $teachercomments;
-            $item[teacherobservations] = $teacherobservations;
+            $item['teachercomments'] = $teachercomments;
+            $item['teacherobservations'] = $teacherobservations;
 
             $pntable = DBUtil::getTables();
             $c = $pntable['IWqv_assignments_column'];
@@ -476,7 +484,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Compose the full assessment url
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	
      * 				- qv object with the assessment information
      *  			- assignment object with the assignment information
@@ -489,25 +497,29 @@ class IWqv_Api_User extends Zikula_AbstractApi {
         // Get the parameters
         extract($args);
 
+        $params = (isset($params)) ? $params : '';
+
         // @TODO: If the qv file is in the intranet documents, check if it's necessary to add basedist for appl, css and scripts
         // Get the params of the URL
         $server = System::getBaseUrl() . ModUtil::url('IWqv', 'user', 'beans');
         $sv = ModUtil::func('IWmain', 'user', 'genSecurityValue');
-        $userfullname = ModUtil::func('IWmain', 'user', 'getUserInfo', array('sv' => $sv, 'uid' => $assignment[userid], 'info' => 'ncc'));
+        $userfullname = ModUtil::func('IWmain', 'user', 'getUserInfo', array('sv' => $sv,
+                    'uid' => $assignment['userid'],
+                    'info' => 'ncc'));
 
         // Construct the URL
-        $qvurl = $qv[url];
+        $qvurl = $qv['url'];
         if (strrpos($qvurl, "?") === false)
             $qvurl.="?";
         else
             $qvurl.="&";
 
-        $qvurl.= "server=$$$server$$&assignmentid=$assignment[qvaid]&userid=$assignment[userid]&fullname=$userfullname";
-        $qvurl.="&skin=$qv[skin]&amp;la" . "ng=$qv[lang]&showinteraction=$qv[showinteraction]&showcorrection=$qv[showcorrection]";
-        $qvurl.="&userview=$viewas" . $params;
+        $qvurl .= "server=$$$server$$&assignmentid=$assignment[qvaid]&userid=$assignment[userid]&fullname=$userfullname";
+        $qvurl .= "&skin=$qv[skin]&amp;la" . "ng=$qv[lang]&showinteraction=$qv[showinteraction]&showcorrection=$qv[showcorrection]";
+        $qvurl .= "&userview=$viewas" . $params;
         return $qvurl;
 
-//@TODO (pasted from Moodle)
+        //@TODO (pasted from Moodle)
         $qv_file = $qv->url;
         $last = strrpos($qv_file, "/html/");
         $size = strlen($qv_file);
@@ -515,9 +527,6 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
         if ($last < strlen($qv_file)) {
             $base_file = substr($qv_file, 0, $last + 1);
-            //if (!(qv_exists_url($base_file."html/appl/qv_local.jar"))) $params.="&appl=$CFG->qv_qvdistplugin_appl";
-            //if (!(qv_exists_url($base_file."html/css/generic.css"))) $params.="&css=$CFG->qv_qvdistplugin_css";
-            //if (!(qv_exists_url($base_file."html/scripts/qv_local.js"))) $params.="&js=$CFG->qv_qvdistplugin_scripts";
         }
 
         //if (isset($assignment->id)){
@@ -529,7 +538,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Create a new qv into database
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the qv information
      * @return	identity of the new record created or false if error
      */
@@ -590,7 +599,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Delete a qv (with its user assignments, sections, messages...)
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param $args['qvid'] ID of the qv assignment
      * @return bool true on success, false on failure
      */
@@ -632,7 +641,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Delete an user assignment (with its sections, messages...)
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param $args['qvaid'] ID of the user assignment
      * @return bool true on success, false on failure
      */
@@ -648,7 +657,9 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             return LogUtil::registerError($this->__('Error! Could not do what you wanted. Please check your input.'));
         }
 
-        $item = ModUtil::apiFunc('IWqv', 'user', 'getassignment', array('qvaid' => $args['qvaid'], 'createifnotexist' => false, 'getallinformation' => false));
+        $item = ModUtil::apiFunc('IWqv', 'user', 'getassignment', array('qvaid' => $args['qvaid'],
+                    'createifnotexist' => false,
+                    'getallinformation' => false));
         if ($item == false) {
             return LogUtil::registerError($this->__('No such item found.'));
         }
@@ -672,7 +683,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Delete the specified section of an user assignment (with its messages...)
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param $args['qvsid'] ID of the section
      * @return bool true on success, false on failure
      */
@@ -711,7 +722,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Delete the specified message
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param $args['qvmid'] ID of the message
      * @return bool true on success, false on failure
      */
@@ -750,7 +761,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Gets all the assignments relationated with specified qv
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param  args	The following parameters are mandatory:
      * 			- qvid 
      * @return	The list of assignments for specified qvid
@@ -779,7 +790,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Gets all the sections of an user assignment
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	
      * 			- qvaid user assignment identifier
      * @return	And array with the sections information
@@ -802,7 +813,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Gets specified section
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	
      * 			- qvsid section identifier
      * @return	And array with the section information
@@ -813,13 +824,13 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             return LogUtil::registerPermissionError();
         }
 
-        $item = DBUtil::selectObjectByID('IWqv_sections', $args[qvsid], 'qvsid');
+        $item = DBUtil::selectObjectByID('IWqv_sections', $args['qvsid'], 'qvsid');
         return $item;
     }
 
     /**
      * Gets specified message
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	
      * 			- qvmid message identifier
      * @return	And array with the message information
@@ -829,13 +840,13 @@ class IWqv_Api_User extends Zikula_AbstractApi {
         if (!SecurityUtil::checkPermission('IWqv::', '::', ACCESS_READ)) {
             return LogUtil::registerPermissionError();
         }
-        $item = DBUtil::selectObjectByID('IWqv_messages', $args[qvmid], 'qvmid');
+        $item = DBUtil::selectObjectByID('IWqv_messages', $args['qvmid'], 'qvmid');
         return $item;
     }
 
     /**
      * Gets all the messages of specified section
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	
      * 			- qvsid section identifier
      * @return	And array with the messages information
@@ -858,7 +869,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Process specified bean and returns the result of this procesament
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean information
      * @return	XML with the result to the callback
      */
@@ -870,67 +881,137 @@ class IWqv_Api_User extends Zikula_AbstractApi {
         switch ($beanid) {
             // Section beans
             case "correct_section":
-                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'assignmentid'));
-                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'sectionid'));
-                $responses = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean, 'paramname' => 'responses'));
-                $scores = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean, 'paramname' => 'scores'));
-                $result = ModUtil::apiFunc('IWqv', 'user', 'beancorrectsection', array('beanid' => $beanid, 'assignmentid' => $assignmentid, 'sectionid' => $sectionid, 'responses' => $responses, 'scores' => $scores));
+                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'assignmentid'));
+                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'sectionid'));
+                $responses = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean,
+                            'paramname' => 'responses'));
+                $scores = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean,
+                            'paramname' => 'scores'));
+                $result = ModUtil::apiFunc('IWqv', 'user', 'beancorrectsection', array('beanid' => $beanid,
+                            'assignmentid' => $assignmentid,
+                            'sectionid' => $sectionid,
+                            'responses' => $responses,
+                            'scores' => $scores));
                 break;
             case "deliver_section":
-                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'assignmentid'));
-                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'sectionid'));
-                $sectionorder = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'sectionorder'));
-                $itemorder = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'itemorder'));
-                $sectiontime = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'time'));
-                $responses = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean, 'paramname' => 'responses'));
+                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'assignmentid'));
+                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'sectionid'));
+                $sectionorder = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'sectionorder'));
+                $itemorder = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'itemorder'));
+                $sectiontime = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'time'));
+                $responses = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean,
+                            'paramname' => 'responses'));
                 $scores = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean, 'paramname' => 'scores'));
-                $result = ModUtil::apiFunc('IWqv', 'user', 'beandeliversection', array('beanid' => $beanid, 'assignmentid' => $assignmentid, 'sectionid' => $sectionid, 'sectionorder' => $sectionorder, 'itemorder' => $itemorder, 'sectiontime' => $sectiontime, 'responses' => $responses, 'scores' => $scores));
+                $result = ModUtil::apiFunc('IWqv', 'user', 'beandeliversection', array('beanid' => $beanid,
+                            'assignmentid' => $assignmentid,
+                            'sectionid' => $sectionid,
+                            'sectionorder' => $sectionorder,
+                            'itemorder' => $itemorder,
+                            'sectiontime' => $sectiontime,
+                            'responses' => $responses,
+                            'scores' => $scores));
                 break;
             case "get_section":
-                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'assignmentid'));
-                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'sectionid'));
-                $result = ModUtil::apiFunc('IWqv', 'user', 'beangetsection', array('beanid' => $beanid, 'assignmentid' => $assignmentid, 'sectionid' => $sectionid));
+                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'assignmentid'));
+                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'sectionid'));
+                $result = ModUtil::apiFunc('IWqv', 'user', 'beangetsection', array('beanid' => $beanid,
+                            'assignmentid' => $assignmentid,
+                            'sectionid' => $sectionid));
                 break;
             case "get_sections":
-                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'assignmentid'));
-                $result = ModUtil::apiFunc('IWqv', 'user', 'beangetsections', array('beanid' => $beanid, 'assignmentid' => $assignmentid));
+                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'assignmentid'));
+                $result = ModUtil::apiFunc('IWqv', 'user', 'beangetsections', array('beanid' => $beanid,
+                            'assignmentid' => $assignmentid));
                 break;
             case "save_section":
-                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'assignmentid'));
-                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'sectionid'));
-                $sectionorder = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'sectionorder'));
-                $itemorder = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'itemorder'));
-                $sectiontime = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'time'));
-                $responses = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean, 'paramname' => 'responses'));
-                $result = ModUtil::apiFunc('IWqv', 'user', 'beansavesection', array('beanid' => $beanid, 'assignmentid' => $assignmentid, 'sectionid' => $sectionid, 'sectionorder' => $sectionorder, 'itemorder' => $itemorder, 'sectiontime' => $sectiontime, 'responses' => $responses));
+                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'assignmentid'));
+                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'sectionid'));
+                $sectionorder = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'sectionorder'));
+                $itemorder = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'itemorder'));
+                $sectiontime = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'time'));
+                $responses = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean,
+                            'paramname' => 'responses'));
+                $result = ModUtil::apiFunc('IWqv', 'user', 'beansavesection', array('beanid' => $beanid,
+                            'assignmentid' => $assignmentid,
+                            'sectionid' => $sectionid,
+                            'sectionorder' => $sectionorder,
+                            'itemorder' => $itemorder,
+                            'sectiontime' => $sectiontime,
+                            'responses' => $responses));
                 break;
             case "save_section_teacher":
-                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'assignmentid'));
-                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'sectionid'));
-                $responses = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean, 'paramname' => 'responses'));
-                $scores = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean, 'paramname' => 'scores'));
-                $result = ModUtil::apiFunc('IWqv', 'user', 'beansavesectionteacher', array('beanid' => $beanid, 'assignmentid' => $assignmentid, 'sectionid' => $sectionid, 'responses' => $responses, 'scores' => $scores));
+                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'assignmentid'));
+                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'sectionid'));
+                $responses = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean,
+                            'paramname' => 'responses'));
+                $scores = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean,
+                            'paramname' => 'scores'));
+                $result = ModUtil::apiFunc('IWqv', 'user', 'beansavesectionteacher', array('beanid' => $beanid,
+                            'assignmentid' => $assignmentid,
+                            'sectionid' => $sectionid,
+                            'responses' => $responses,
+                            'scores' => $scores));
                 break;
             case "save_time":
-                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'assignmentid'));
-                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'sectionid'));
-                $sectiontime = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'time'));
-                $result = ModUtil::apiFunc('IWqv', 'user', 'beansavetime', array('beanid' => $beanid, 'assignmentid' => $assignmentid, 'sectionid' => $sectionid, 'sectionorder' => $sectionorder, 'itemorder' => $itemorder, 'sectiontime' => $sectiontime, 'responses' => $responses));
+                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'assignmentid'));
+                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'sectionid'));
+                $sectiontime = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'time'));
+                $result = ModUtil::apiFunc('IWqv', 'user', 'beansavetime', array('beanid' => $beanid,
+                            'assignmentid' => $assignmentid,
+                            'sectionid' => $sectionid,
+                            'sectionorder' => $sectionorder,
+                            'itemorder' => $itemorder,
+                            'sectiontime' => $sectiontime,
+                            'responses' => $responses));
                 break;
 
             // Message beans
             case "add_message":
-                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'assignmentid'));
-                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'sectionid'));
-                $itemid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'itemid'));
-                $userid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'userid'));
-                $message = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean, 'paramname' => 'message'));
-                $result = ModUtil::apiFunc('IWqv', 'user', 'beanaddmessage', array('beanid' => $beanid, 'assignmentid' => $assignmentid, 'sectionid' => $sectionid, 'itemid' => $itemid, 'userid' => $userid, 'message' => $message));
+                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'assignmentid'));
+                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'sectionid'));
+                $itemid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'itemid'));
+                $userid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'userid'));
+                $message = ModUtil::apiFunc('IWqv', 'user', 'beangetcontent', array('bean' => $bean,
+                            'paramname' => 'message'));
+                $result = ModUtil::apiFunc('IWqv', 'user', 'beanaddmessage', array('beanid' => $beanid,
+                            'assignmentid' => $assignmentid,
+                            'sectionid' => $sectionid,
+                            'itemid' => $itemid,
+                            'userid' => $userid,
+                            'message' => $message));
                 break;
             case "get_messages":
-                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'assignmentid'));
-                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean, 'paramname' => 'sectionid'));
-                $result = ModUtil::apiFunc('IWqv', 'user', 'beangetmessages', array('beanid' => $beanid, 'assignmentid' => $assignmentid, 'sectionid' => $sectionid));
+                $assignmentid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'assignmentid'));
+                $sectionid = ModUtil::apiFunc('IWqv', 'user', 'beangetparam', array('bean' => $bean,
+                            'paramname' => 'sectionid'));
+                $result = ModUtil::apiFunc('IWqv', 'user', 'beangetmessages', array('beanid' => $beanid,
+                            'assignmentid' => $assignmentid,
+                            'sectionid' => $sectionid));
                 break;
 
             // Error 
@@ -945,7 +1026,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Get the information of all the sections of the specified assignment
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	XML with the result of the callback
      */
@@ -967,7 +1048,8 @@ class IWqv_Api_User extends Zikula_AbstractApi {
                     $showcorrection = $qv[showcorrection];
                     $totaltime = "00:00:00";
                     foreach ($sections as $section) {
-                        $totaltime = ModUtil::apiFunc('IWqv', 'user', 'addtime', array('time1' => $totaltime, 'time2' => $section[time]));
+                        $totaltime = ModUtil::apiFunc('IWqv', 'user', 'addtime', array('time1' => $totaltime,
+                                    'time2' => $section[time]));
                         $response.="<section ";
                         $response.=" id=\"$section[sectionid]\" ";
                         $response.=" showcorrection=\"$showcorrection\"";
@@ -983,14 +1065,14 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             }
         }
 
-        $responseBean.='<bean id="' . $beanid . '" assignmentid="' . $assignmentid . '" time="' . $totaltime . '" ' . (isset($error) ? 'error="' . $error . '"' : "") . ' >';
+        $responseBean .= '<bean id="' . $beanid . '" assignmentid="' . $assignmentid . '" time="' . $totaltime . '" ' . (isset($error) ? 'error="' . $error . '"' : "") . ' >';
         $response = $responseBean . $response . '</bean>';
         return $response;
     }
 
     /**
      * Get the information of the specified section for the specified assignment
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	XML with the result of the callback
      */
@@ -1005,12 +1087,12 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             $c = $pntable['IWqv_sections_column'];
             $where = " $c[qvaid]=$assignmentid AND $c[sectionid]='$sectionid' ";
             if ($section = DBUtil::selectObject('IWqv_sections', $where)) {
-                $responses = $section[responses];
-                $scores = $section[scores];
-                $pending_scores = $section[pendingscores];
-                $attempts = $section[attempts];
-                $state = $section[state];
-                $time = $section[time];
+                $responses = $section['responses'];
+                $scores = $section['scores'];
+                $pending_scores = $section['pendingscores'];
+                $attempts = $section['attempts'];
+                $state = $section['state'];
+                $time = $section['time'];
             } else {
                 $responses = '';
                 $scores = '';
@@ -1019,10 +1101,10 @@ class IWqv_Api_User extends Zikula_AbstractApi {
                 $state = -1;
                 $time = "00:00:00";
             }
-            if ($qv = DBUtil::selectObjectByID('IWqv', $assignment[qvid], 'qvid')) {
+            if ($qv = DBUtil::selectObjectByID('IWqv', $assignment['qvid'], 'qvid')) {
                 $qvid = $qv[qvid];
-                $maxdeliver = $qv[maxdeliver];
-                $showcorrection = $qv[showcorrection];
+                $maxdeliver = $qv['maxdeliver'];
+                $showcorrection = $qv['showcorrection'];
             }
         }
 
@@ -1047,7 +1129,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Save the information of the specified section for the specified assignment
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	XML with the result of the callback
      */
@@ -1060,13 +1142,13 @@ class IWqv_Api_User extends Zikula_AbstractApi {
         } else {
             $modifiedAssign = false;
             if ($sectionorder >= 0) { //Establishing sectionorder
-                if ($sectionorder != 0 && $assignment[sectionorder] == 0) { //it wasn't established before
+                if ($sectionorder != 0 && $assignment['sectionorder'] == 0) { //it wasn't established before
                     $assignment[sectionorder] = $sectionorder;
                     $modifiedAssign = true;
                 }
             }
             if ($itemorder >= 0) { //Establishing itemorder
-                if ($itemorder != 0 && $assignment[itemorder] == 0) { //it wasn't established before
+                if ($itemorder != 0 && $assignment['itemorder'] == 0) { //it wasn't established before
                     $assignment[itemorder] = $itemorder;
                     $modifiedAssign = true;
                 }
@@ -1085,17 +1167,19 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             $c = $pntable['IWqv_sections_column'];
             $where = " $c[qvaid]=$assignmentid AND $c[sectionid]='$sectionid' ";
             if ($section = DBUtil::selectObject('IWqv_sections', $where)) {
-                $qv = DBUtil::selectObjectByID('IWqv', $assignment[qvid], 'qvid');
-                if (ModUtil::apiFunc('IWqv', 'user', 'checkmaxdelivernotexceeded', array('qv' => $qv, 'section' => $section))) {
+                $qv = DBUtil::selectObjectByID('IWqv', $assignment['qvid'], 'qvid');
+                if (ModUtil::apiFunc('IWqv', 'user', 'checkmaxdelivernotexceeded', array('qv' => $qv,
+                            'section' => $section))) {
                     //Update section
-                    $section[responses] = $responses;
-                    $section[state] = 0;
-                    $section[pendingscores] = $section[scores];
-                    $section[time] = ModUtil::apiFunc('IWqv', 'user', 'addtime', array('time1' => $section[time], 'time2' => $sectiontime));
+                    $section['responses'] = $responses;
+                    $section['state'] = 0;
+                    $section['pendingscores'] = $section['scores'];
+                    $section['time'] = ModUtil::apiFunc('IWqv', 'user', 'addtime', array('time1' => $section[time],
+                                'time2' => $sectiontime));
                     if ($isdeliver) {
-                        $section[scores] = $scores;
-                        $section[attempts] = $section[attempts] + 1;
-                        $section[state] = 1;
+                        $section['scores'] = $scores;
+                        $section['attempts'] = $section['attempts'] + 1;
+                        $section['state'] = 1;
                     }
                     if (!DBUTil::updateObject($section, 'IWqv_sections', $where)) {
                         $error = "error_db_update";
@@ -1111,10 +1195,10 @@ class IWqv_Api_User extends Zikula_AbstractApi {
                     'state' => 0,
                     'time' => $sectiontime);
                 if ($isdeliver) {
-                    $section[scores] = $scores;
-                    $section[pendingscores] = $scores;
-                    $section[attempts] = 1;
-                    $section[state] = 1;
+                    $section['scores'] = $scores;
+                    $section['pendingscores'] = $scores;
+                    $section['attempts'] = 1;
+                    $section['state'] = 1;
                 }
                 if (!DBUtil::insertObject($section, 'IWqv_sections', 'qvsid')) {
                     $error = "error_db_insert";
@@ -1125,12 +1209,12 @@ class IWqv_Api_User extends Zikula_AbstractApi {
         $response.="<bean id=\"$beanid\" assignmentid=\"$assignmentid\">";
         $response.=" <section id=\"$sectionid\" ";
         if (isset($error))
-            $response.=" error=\"$error\" ";
+            $response .= " error=\"$error\" ";
         if ($isdeliver) {
-            $response.=" attempts=\"$section[attempts]\" ";
-            $response.=" maxdeliver=\"$qv[maxdeliver]\" ";
-            $response.=" showcorrection=\"$qv[showcorrection]\" ";
-            $response.=" time=\"$section[time]\" ";
+            $response .= " attempts=\"$section[attempts]\" ";
+            $response .= " maxdeliver=\"$qv[maxdeliver]\" ";
+            $response .= " showcorrection=\"$qv[showcorrection]\" ";
+            $response .= " time=\"$section[time]\" ";
         }
         $response.=" state=\"$section[state]\" />";
         $response.='</bean>';
@@ -1139,7 +1223,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Save the information of the specified section for the specified assignment
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	XML with the result of the callback
      */
@@ -1156,16 +1240,17 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             $pntable = DBUtil::getTables();
             $c = $pntable['IWqv_sections_column'];
             $where = " $c[qvaid]=$assignmentid AND $c[sectionid]='$sectionid' ";
-            if ($section = DBUtil::selectObject('IWqv_sections', $where)) {
+            $section = DBUtil::selectObject('IWqv_sections', $where);
+            if ($section) {
                 //Update section
                 if ($responses != '')
-                    $section[responses] = $responses;
+                    $section['responses'] = $responses;
                 if ($scores != '')
-                    $section[pendingscores] = $scores;
+                    $section['pendingscores'] = $scores;
                 if ($iscorrect) {
-                    $section[state] = 2;
+                    $section['state'] = 2;
                     if ($scores != '')
-                        $section[scores] = $scores;
+                        $section['scores'] = $scores;
                 }
                 if (!DBUTil::updateObject($section, 'IWqv_sections', $where)) {
                     $error = "error_db_update";
@@ -1179,7 +1264,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
                 if ($iscorrect) {
                     $section[state] = 2;
                     if ($scores != '')
-                        $section[scores] = $scores;
+                        $section['scores'] = $scores;
                 }
                 if (!DBUtil::insertObject($section, 'IWqv_sections', 'qvsid')) {
                     $error = "error_db_insert";
@@ -1187,36 +1272,52 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             }
         }
 
-        $response.="<bean id=\"$beanid\" assignmentid=\"$assignmentid\">";
-        $response.=" <section id=\"$sectionid\" ";
+        $response .= "<bean id=\"$beanid\" assignmentid=\"$assignmentid\">";
+        $response .= " <section id=\"$sectionid\" ";
         if (isset($error))
-            $response.=" error=\"$error\" ";
-        $response.=" state=\"$section[state]\" />";
-        $response.='</bean>';
+            $response .= " error=\"$error\" ";
+        $response .= " state=\"$section[state]\" />";
+        $response .= '</bean>';
         return $response;
     }
 
     /**
      * Save the information of the specified section for the specified assignment
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	XML with the result of the callback
      */
     public function beandeliversection($args) {
         extract($args);
-        $result = ModUtil::apiFunc('IWqv', 'user', 'beansavesection', array('beanid' => $beanid, 'assignmentid' => $assignmentid, 'sectionid' => $sectionid, 'sectionorder' => $sectionorder, 'itemorder' => $itemorder, 'sectiontime' => $sectiontime, 'responses' => $responses, 'scores' => $scores, 'isdeliver' => true));
+        $result = ModUtil::apiFunc('IWqv', 'user', 'beansavesection', array('beanid' => $beanid,
+                    'assignmentid' => $assignmentid,
+                    'sectionid' => $sectionid,
+                    'sectionorder' => $sectionorder,
+                    'itemorder' => $itemorder,
+                    'sectiontime' => $sectiontime,
+                    'responses' => $responses,
+                    'scores' => $scores,
+                    'isdeliver' => true));
         return $result;
     }
 
     /**
      * Correct specfied section
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	XML with the result of the callback
      */
     public function beancorrectsection($args) {
         extract($args);
-        $result = ModUtil::apiFunc('IWqv', 'user', 'beansavesectionteacher', array('beanid' => $beanid, 'assignmentid' => $assignmentid, 'sectionid' => $sectionid, 'sectionorder' => $sectionorder, 'itemorder' => $itemorder, 'sectiontime' => $sectiontime, 'responses' => $responses, 'scores' => $scores, 'iscorrect' => true));
+        $result = ModUtil::apiFunc('IWqv', 'user', 'beansavesectionteacher', array('beanid' => $beanid,
+                    'assignmentid' => $assignmentid,
+                    'sectionid' => $sectionid,
+                    'sectionorder' => $sectionorder,
+                    'itemorder' => $itemorder,
+                    'sectiontime' => $sectiontime,
+                    'responses' => $responses,
+                    'scores' => $scores,
+                    'iscorrect' => true));
         return $result;
 
         extract($args);
@@ -1226,14 +1327,15 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             $pntable = DBUtil::getTables();
             $c = $pntable['IWqv_sections_column'];
             $where = " $c[qvaid]=$assignmentid AND $c[sectionid]='$sectionid' ";
-            if ($section = DBUtil::selectObject('IWqv_sections', $where)) {
+            $section = DBUtil::selectObject('IWqv_sections', $where);
+            if ($section) {
                 //Update section
-                $section[state] = 2;
+                $section['state'] = 2;
                 if ($responses != '')
-                    $section[responses] = $responses;
+                    $section['responses'] = $responses;
                 if ($scores != '') {
-                    $section[pendingscores] = $scores;
-                    $section[scores] = $scores;
+                    $section['pendingscores'] = $scores;
+                    $section['scores'] = $scores;
                 }
                 $pntable = DBUtil::getTables();
                 $c = $pntable['IWqv_sections_column'];
@@ -1256,18 +1358,18 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             }
         }
 
-        $response.="<bean id=\"$beanid\" assignmentid=\"$assignmentid\">";
-        $response.=" <section id=\"$sectionid\" ";
+        $response .= "<bean id=\"$beanid\" assignmentid=\"$assignmentid\">";
+        $response .= " <section id=\"$sectionid\" ";
         if (isset($error))
-            $response.=" error=\"$error\" ";
-        $response.=" state=\"$section[state]\" />";
-        $response.='</bean>';
+            $response .= " error=\"$error\" ";
+        $response .= " state=\"$section[state]\" />";
+        $response .= '</bean>';
         return $response;
     }
 
     /**
      * Update the time spended in the specified section 
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	XML with the result of the callback
      */
@@ -1281,9 +1383,11 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             $pntable = DBUtil::getTables();
             $c = $pntable['IWqv_sections_column'];
             $where = " $c[qvaid]=$assignmentid AND $c[sectionid]='$sectionid' ";
-            if ($section = DBUtil::selectObject('IWqv_sections', $where)) {
+            $section = DBUtil::selectObject('IWqv_sections', $where);
+            if ($section) {
                 //Update section
-                $section[time] = ModUtil::apiFunc('IWqv', 'user', 'addtime', array('time1' => $section[time], 'time2' => $sectiontime));
+                $section['time'] = ModUtil::apiFunc('IWqv', 'user', 'addtime', array('time1' => $section[time],
+                            'time2' => $sectiontime));
                 if (!DBUTil::updateObject($section, 'IWqv_sections', $where)) {
                     $error = "error_db_update";
                 }
@@ -1298,18 +1402,18 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             }
         }
 
-        $response.="<bean id=\"$beanid\" assignmentid=\"$assignmentid\">";
-        $response.=" <section id=\"$sectionid\" ";
+        $response .= "<bean id=\"$beanid\" assignmentid=\"$assignmentid\">";
+        $response .= " <section id=\"$sectionid\" ";
         if (isset($error))
-            $response.=" error=\"$error\" ";
-        $response.=" time=\"$section[time]\" />";
-        $response.='</bean>';
+            $response .= " error=\"$error\" ";
+        $response .= " time=\"$section[time]\" />";
+        $response .= '</bean>';
         return $response;
     }
 
     /**
      * Get all the messages for specified section
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	XML with the result of the callback
      */
@@ -1321,20 +1425,22 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             $pntable = DBUtil::getTables();
             $c = $pntable['IWqv_sections_column'];
             $where = " $c[qvaid]=$assignmentid AND $c[sectionid]='$sectionid' ";
-            if ($section = DBUtil::selectObject('IWqv_sections', $where)) {
+            $section = DBUtil::selectObject('IWqv_sections', $where);
+            if ($section) {
                 $uid = UserUtil::getVar('uid');
 
                 $pntable = DBUtil::getTables();
                 $c = $pntable['IWqv_messages_column'];
                 $where = " $c[qvsid]=$section[qvsid] ";
-                if ($messages = DBUtil::selectObjectArray('IWqv_messages', $where, $c[cr_date])) {
+                $messages = DBUtil::selectObjectArray('IWqv_messages', $where, $c['cr_date']);
+                if ($messages) {
                     foreach ($messages as $message) {
                         // Mark the message as read for the current user
                         $pntable = DBUtil::getTables();
                         $c = $pntable['IWqv_messages_read_column'];
                         $where = " $c[qvmid]=$message[qvmid] AND $c[userid]=$uid ";
                         if (!$message_read = DBUtil::selectObject('IWqv_messages_read', $where)) {
-                            $message_read = array('qvmid' => $message[qvmid],
+                            $message_read = array('qvmid' => $message['qvmid'],
                                 'userid' => $uid);
                             if (!($qvmrid = DBUtil::insertObject($message_read, 'IWqv_messages_read', 'qvmrid'))) {
                                 $error = "error_db_insert";
@@ -1342,20 +1448,23 @@ class IWqv_Api_User extends Zikula_AbstractApi {
                         }
 
                         // Create XML response
-                        $response.="\n<message id=\"$message[qvmid]\" ";
-                        $response.=" itemid=\"$message[itemid]\" ";
-                        $response.=" userid=\"$message[userid]\" ";
-                        if ($user = ModUtil::func('IWmain', 'user', 'getUserInfo', array('sv' => ModUtil::func('IWmain', 'user', 'genSecurityValue'), 'uid' => $message[userid], 'info' => 'ncc'))) {
-                            $response.=" username=\"$user\" ";
+                        $response .= "\n<message id=\"$message[qvmid]\" ";
+                        $response .= " itemid=\"$message[itemid]\" ";
+                        $response .= " userid=\"$message[userid]\" ";
+                        $user = ModUtil::func('IWmain', 'user', 'getUserInfo', array('sv' => ModUtil::func('IWmain', 'user', 'genSecurityValue'),
+                                    'uid' => $message[userid],
+                                    'info' => 'ncc'));
+                        if ($user) {
+                            $response .= " username=\"$user\" ";
                         }
-                        $response.=">\n";
-                        $response.="<![CDATA[" . $message[message] . "]]>\n";
-                        $response.="</message>\n";
+                        $response .= ">\n";
+                        $response .= "<![CDATA[" . $message[message] . "]]>\n";
+                        $response .= "</message>\n";
                     }
                 }
             }
         }
-        $responseBean.="<bean id=\"$beanid\" assignmentid=\"$assignmentid\" sectionid=\"$sectionid\" userid=\"$userid\" ";
+        $responseBean .= "<bean id=\"$beanid\" assignmentid=\"$assignmentid\" sectionid=\"$sectionid\" userid=\"$userid\" ";
         if (isset($error))
             $responseBean.=" error=\"$error\" ";
         $responseBean.=" >";
@@ -1365,7 +1474,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Add a message to the specified section item
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	XML with the result of the callback
      */
@@ -1398,30 +1507,30 @@ class IWqv_Api_User extends Zikula_AbstractApi {
             }
         }
 
-        $response.="<bean id=\"$beanid\" assignmentid=\"$assignmentid\" sectionid=\"$sectionid\" itemid=\"$itemid\" userid=\"$userid\" >";
-        $response.=" <message id=\"$qvmid\" ";
+        $response .= "<bean id=\"$beanid\" assignmentid=\"$assignmentid\" sectionid=\"$sectionid\" itemid=\"$itemid\" userid=\"$userid\" >";
+        $response .= " <message id=\"$qvmid\" ";
         if (isset($error))
-            $response.=" error=\"$error\" ";
-        $response.='/>';
-        $response.='</bean>';
+            $response .= " error=\"$error\" ";
+        $response .= '/>';
+        $response .= '</bean>';
         return $response;
     }
 
     /**
      * Check if the number of delivers is exceeded
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	True if number of delivers isn't exceeded; false otherwise
      */
     public function checkmaxdelivernotexceeded($args) {
         extract($args);
         //Check max deliver < current attempts
-        return ($qv[maxdeliver] < 0 || $section[attempts] < $qv[maxdeliver]);
+        return ($qv['maxdeliver'] < 0 || $section['attempts'] < $qv['maxdeliver']);
     }
 
     /**
      * Get the the value of the specified param
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	Value of the specified param
      */
@@ -1445,7 +1554,7 @@ class IWqv_Api_User extends Zikula_AbstractApi {
 
     /**
      * Get the the value of the specified param
-     * @author Sara Arjona TÃ©llez (sarjona@xtec.cat)
+     * @author Sara Arjona Téllez (sarjona@xtec.cat)
      * @param	args	array with the bean parameters
      * @return	Value of the specified param
      */

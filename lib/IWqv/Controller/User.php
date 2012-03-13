@@ -86,10 +86,7 @@ class IWqv_Controller_User extends Zikula_AbstractController {
         }
         $assignments = ModUtil::apiFunc('IWqv', 'user', 'getall', $params);
 
-        $security = SecurityUtil::generateCsrfToken();
-
-        return $this->view->assign('security', $security)
-                        ->assign('assignments', $assignments)
+        return $this->view->assign('assignments', $assignments)
                         ->assign('viewas', $viewas)
                         ->fetch('IWqv_user_show_assignments.htm');
     }
@@ -120,17 +117,14 @@ class IWqv_Controller_User extends Zikula_AbstractController {
                 //$userid = FormUtil::getPassedValue('userid', isset($args['userid']) ? $args['userid'] : null, 'REQUEST');
                 // Get the qv and the list of assignments
                 $qv = ModUtil::apiFunc('IWqv', 'user', 'get', array('qvid' => $qvid,
-                            'userid' => $userid));
+                            'userid' => $uid));
                 $assignments = ModUtil::apiFunc('IWqv', 'user', 'getteacherassignments', array('qv' => $qv,
                             'teacher' => $uid));
-                $security = SecurityUtil::generateCsrfToken();
 
-                return $this->view->assign('security', $security)
-                                ->assign('qv', $qv)
+                return $this->view->assign('qv', $qv)
                                 ->assign('assignments', $assignments)
                                 ->assign('viewas', $viewas)
                                 ->fetch('IWqv_user_show_teacher_assignments.htm');
-
             case 'student':
             default:
                 // Security check
@@ -146,11 +140,7 @@ class IWqv_Controller_User extends Zikula_AbstractController {
                             'viewas' => $viewas));
         }
 
-
-        $security = SecurityUtil::generateCsrfToken();
-
-        return $this->view->assign('security', $security)
-                        ->assign('qv', $qv)
+        return $this->view->assign('qv', $qv)
                         ->assign('assignment', $assignment)
                         ->fetch('IWqv_user_show_assignment.htm');
     }
@@ -212,10 +202,7 @@ class IWqv_Controller_User extends Zikula_AbstractController {
             $actiontext = $this->__('Add');
         }
 
-        $security = SecurityUtil::generateCsrfToken();
-
-        return $this->view->assign('security', $security)
-                        ->assign('qvid', $qvid)
+        return $this->view->assign('qvid', $qvid)
                         ->assign('skins', $skins)
                         ->assign('langs', $langs)
                         ->assign('maxdelivers', $maxdelivers)
@@ -300,9 +287,9 @@ class IWqv_Controller_User extends Zikula_AbstractController {
 
         // Creation successfully, so the user will be notified        
         if ($isupdate)
-            LogUtil::registerStatus(pnML($this->__f('Done! %1$s updated.', $this->__('User assignment'))));
+            LogUtil::registerStatus($this->__f('Done! %1$s updated.', $this->__('User assignment')));
         else
-            LogUtil::registerStatus(pnML($this->__f('Done! %1$s created.', $this->__('QV assignment'))));
+            LogUtil::registerStatus($this->__f('Done! %1$s created.', $this->__('QV assignment')));
         return System::redirect(ModUtil::url('IWqv', 'user', 'show_assignment', array("qvid" => $qvid,
                             'viewas' => 'teacher')));
     }
@@ -330,8 +317,7 @@ class IWqv_Controller_User extends Zikula_AbstractController {
         $assignment = ModUtil::apiFunc('IWqv', 'user', 'getassignment', array("qvid" => $qvid,
                     "userid" => $userid));
 
-        return $this->view->assign('security', SecurityUtil::generateCsrfToken())
-                        ->assign('qvid', $qvid)
+        return $this->view->assign('qvid', $qvid)
                         ->assign('userid', $userid)
                         ->assign('assignment', $assignment)
                         ->fetch('IWqv_user_user_assignment_form.htm');
@@ -374,7 +360,7 @@ class IWqv_Controller_User extends Zikula_AbstractController {
         }
 
         // Creation successfully, so the user will be notified
-        LogUtil::registerStatus(pnML($this->__f('Done! %1$s updated.', $this->__('User assignment'))));
+        LogUtil::registerStatus($this->__f('Done! %1$s updated.', $this->__('User assignment')));
         return System::redirect(ModUtil::url('IWqv', 'user', 'show_assignment', array("qvid" => $qvid,
                             'viewas' => 'teacher')));
     }

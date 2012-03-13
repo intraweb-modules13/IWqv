@@ -60,7 +60,7 @@ class IWqv_Controller_Admin extends Zikula_AbstractController {
         if (isset($basedisturl))
             ModUtil::setVar('IWqv', 'basedisturl', $basedisturl);
 
-        LogUtil::registerStatus(pnML($this->__f('Done! %1$s updated.', $this->__('settings'))));
+        LogUtil::registerStatus($this->__f('Done! %1$s updated.', $this->__('settings')));
         return System::redirect(ModUtil::url('IWqv', 'admin', 'main'));
     }
 

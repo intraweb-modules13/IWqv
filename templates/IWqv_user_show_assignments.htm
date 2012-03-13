@@ -6,7 +6,11 @@
     <div id="assignment_{$assignments[assign].qvid}"  class="theme_box">
         <div class="assignment">
             <h2>
-                {if $assignments[assign].active eq 1}{img modname='core' src='greenled.gif' set='icons/extrasmall' __alt="Active" __title="Active"}{else}{img modname='core' src='redled.gif' set='icons/extrasmall'   __alt="Inactive" __title="Inactive"}{/if}
+                {if $assignments[assign].active eq 1}
+                {img modname='core' src='greenled.png' set='icons/extrasmall' __alt="Active" __title="Active"}
+                {else}
+                {img modname='core' src='redled.png' set='icons/extrasmall' __alt="Inactive" __title="Inactive"}
+                {/if}
                 <a href="javascript:void(0);" onclick="iwqvShowAssignment({$assignments[assign].qvid}, '{$viewas}')" >
                     {$assignments[assign].title}
                 </a>

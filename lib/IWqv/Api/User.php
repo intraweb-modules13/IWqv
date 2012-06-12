@@ -284,7 +284,11 @@ class IWqv_Api_User extends Zikula_AbstractApi {
                             $totalscore += substr($section['scores'], $start, $length);
                         }
                         // status
-                        $states[$section['state']] += 1;
+                        if (isset($section['state'])) {
+                            $states[$section['state']] = 1;
+                        } else {
+                            $states[$section['state']] += 1;
+                        }
                     }
                 }
 

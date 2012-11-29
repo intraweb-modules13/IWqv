@@ -10,7 +10,7 @@ function IWqv_tables() {
 
     // IWqv table definition
     $tables['IWqv'] = DBUtil::getLimitedTablename('IWqv');
-    $tables['IWqv_column'] = array('qvid' => 'IWqvid',
+    $tables['IWqv_column'] = array('qvid' => 'iw_qvid',
         'teacher' => 'iw_teacher',
         'groups' => 'iw_groups',
         'title' => 'iw_title',
@@ -52,8 +52,8 @@ function IWqv_tables() {
 
     // IWqv_assignments table definition
     $tables['IWqv_assignments'] = DBUtil::getLimitedTablename('IWqv_assignments');
-    $tables['IWqv_assignments_column'] = array('qvaid' => 'IWqvaid',
-        'qvid' => 'IWqvid',
+    $tables['IWqv_assignments_column'] = array('qvaid' => 'iw_qvaid',
+        'qvid' => 'iw_qvid',
         'userid' => 'iw_userid',
         'sectionorder' => 'iw_sectionorder',
         'itemorder' => 'iw_itemorder',
@@ -73,8 +73,8 @@ function IWqv_tables() {
 
     // IWqv_sections table definition
     $tables['IWqv_sections'] = DBUtil::getLimitedTablename('IWqv_sections');
-    $tables['IWqv_sections_column'] = array('qvsid' => 'IWqvsid',
-        'qvaid' => 'IWqvaid',
+    $tables['IWqv_sections_column'] = array('qvsid' => 'iw_qvsid',
+        'qvaid' => 'iw_qvaid',
         'sectionid' => 'iw_sectionid',
         'responses' => 'iw_responses',
         'scores' => 'iw_scores',
@@ -98,8 +98,8 @@ function IWqv_tables() {
 
     // IWqv_messages table definition
     $tables['IWqv_messages'] = DBUtil::getLimitedTablename('IWqv_messages');
-    $tables['IWqv_messages_column'] = array('qvmid' => 'IWqvmid',
-        'qvsid' => 'IWqvsid',
+    $tables['IWqv_messages_column'] = array('qvmid' => 'iw_qvmid',
+        'qvsid' => 'iw_qvsid',
         'itemid' => 'iw_itemid',
         'userid' => 'iw_userid',
         'message' => 'iw_message');
@@ -115,8 +115,8 @@ function IWqv_tables() {
 
     // IWqv_messages table definition
     $tables['IWqv_messages_read'] = DBUtil::getLimitedTablename('IWqv_messages_read');
-    $tables['IWqv_messages_read_column'] = array('qvmrid' => 'IWqvmrid',
-        'qvmid' => 'IWqvmid',
+    $tables['IWqv_messages_read_column'] = array('qvmrid' => 'iw_qvmrid',
+        'qvmid' => 'iw_qvmid',
         'userid' => 'iw_userid');
 
     $tables['IWqv_messages_read_column_def'] = array('qvmrid' => "I NOTNULL AUTO PRIMARY",

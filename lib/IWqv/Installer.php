@@ -64,20 +64,6 @@ class IWqv_Installer extends Zikula_AbstractInstaller {
      * @return bool true if successful, false otherwise
      */
     public function upgrade($oldversion) {
-        // Checks if module IWmain is installed. If not returns error
-        $modid = ModUtil::getIdFromName('IWmain');
-        $modinfo = ModUtil::getInfo($modid);
-
-        if ($modinfo['state'] != 3) {
-            return LogUtil::registerError($this->__('The modul IWmain must be installed. Install it, for install this modul.'));
-        }
-
-        // Check if the version needed is correct
-        $versionNeeded = '1.3';
-        if (!ModUtil::func('IWmain', 'admin', 'checkVersion', array('version' => $versionNeeded))) {
-            return false;
-        }
-
         if (!DBUtil::changeTable('IWqv'))
             return false;
 
